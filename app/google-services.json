@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "361093561826",
+    "project_id": "doanchiduong-45203",
+    "storage_bucket": "doanchiduong-45203.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361093561826:android:7ef5eb6e491f38fb850dbb",
+        "android_client_info": {
+          "package_name": "stu.edu.vn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_MWmPRPL1_58Je_AyRDxp35zTLL0ROnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
