@@ -8,40 +8,95 @@
     android:layout_height="match_parent"
     tools:context=".dangky"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="#B556A0DB"
+    android:padding="16dp">
 
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng Ký Tài Khoản"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Email Input Field -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_mail_24"
+            android:layout_marginEnd="8dp"/>
 
         <EditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email" />
-
-
     </LinearLayout>
+
+    <!-- Password Input Field -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical">
 
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_lock_24"
+            android:layout_marginEnd="8dp"/>
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
-
+            android:hint="Password"
+            android:inputType="textPassword"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_lock_24"
+            android:layout_marginEnd="8dp"/>
+        <EditText
+            android:id="@+id/txtPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập lại Password"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <!-- Register Button -->
     <Button
         android:id="@+id/btnDangKy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đăng ký"
         android:layout_gravity="center"/>
-
+    <TextView
+        android:id="@+id/txtAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn đã có tài khoản?"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

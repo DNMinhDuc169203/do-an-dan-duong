@@ -7,40 +7,79 @@
     android:layout_height="match_parent"
     tools:context=".Dangnhap"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#B556A0DB">
 
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng Nhập"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Email Input Field -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical">
 
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_mail_24"
+            android:layout_marginEnd="8dp"/>
         <EditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="Email" />
-
-
     </LinearLayout>
+
+    <!-- Password Input Field -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_lock_24"
+            android:layout_marginEnd="8dp"/>
 
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
-
+            android:hint="Password"
+            android:inputType="textPassword"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnDangNhap"
+
+    <!-- Button Layout -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dang Nhap"
-        android:layout_gravity="center"/>
+        android:orientation="horizontal"
+        android:gravity="center">
 
+        <Button
+            android:id="@+id/btnDangNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập"
+            android:layout_marginEnd="16dp"/>
 
+        <Button
+            android:id="@+id/btnDangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng Ký" />
+    </LinearLayout>
 </LinearLayout>

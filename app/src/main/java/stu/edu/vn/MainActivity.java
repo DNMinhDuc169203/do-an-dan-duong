@@ -13,12 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btndangky, btndangnhap;
 
-    public void dinhnghia() {
-        btndangky = findViewById(R.id.btndangky);
-        btndangnhap = findViewById(R.id.btndangnhap);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +25,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        dinhnghia();
 
-        btndangky.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(MainActivity.this, dangky.class);
-                startActivity(intent1);
-            }
-        });
-        btndangnhap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent2 = new Intent(MainActivity.this, Dangnhap.class);
-                startActivity(intent2);
-            }
-        });
+
+
     }
 
 }

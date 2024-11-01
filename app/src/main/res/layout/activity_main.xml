@@ -8,24 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btndangky"
-        android:layout_width="124dp"
-        android:layout_height="65dp"
-        android:text="Dang ky"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307" />
-
-    <Button
-        android:id="@+id/btndangnhap"
-        android:layout_width="137dp"
-        android:layout_height="60dp"
-        android:text="Dang Nhap"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hêlo"
+        android:textSize="30dp"/>
 </LinearLayout>

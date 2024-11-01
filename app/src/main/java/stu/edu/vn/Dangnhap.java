@@ -1,5 +1,6 @@
 package stu.edu.vn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,13 +23,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Dangnhap extends AppCompatActivity {
 
     EditText txtEmail, txtpass;
-    Button btndangnhap;
+    Button btndangnhap,btndangky;
     FirebaseAuth mAuth;
 
     public void addControls(){
         txtEmail =findViewById(R.id.txtEmail);
         txtpass =findViewById(R.id.txtPassword);
-        btndangnhap =findViewById(R.id.btndangnhap);
+        btndangnhap =findViewById(R.id.btnDangNhap);
+        btndangky =findViewById(R.id.btnDangKy);
         mAuth =  FirebaseAuth.getInstance();
     }
 
@@ -44,33 +46,52 @@ public class Dangnhap extends AppCompatActivity {
         });
         addControls();
 
+        btndangky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dang_ky();
+            }
+        });
+
         btndangnhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = txtEmail.getText().toString().trim();
-                String password = txtpass.getText().toString().trim();
-
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(Dangnhap.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-                } else {
-                    dang_Nhap_User(email, password);
-                }
+               login();
 
             }
         });
     }
 
-    private void dang_Nhap_User(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+    private void dang_ky() {
+        Intent intent = new Intent(Dangnhap.this, dangky.class);
+        startActivity(intent);
+    }
+
+    private void login() {
+
+        String email = txtEmail.getText().toString();
+        String pass =txtpass.getText().toString();
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(pass)){
+            Toast.makeText(this, "Vui lòng nhập password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(Dangnhap.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                    // Chuyển sang màn hình chính của ứng dụng
-                } else {
-                    Toast.makeText(Dangnhap.this, "Đăng nhập thất bại: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                if(task.isSuccessful()){
+                    Toast.makeText(Dangnhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Dangnhap.this,MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(Dangnhap.this, "Đăng Nhập không thành công", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
 }
