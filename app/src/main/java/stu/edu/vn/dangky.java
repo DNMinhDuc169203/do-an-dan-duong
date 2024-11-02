@@ -37,6 +37,7 @@ public class dangky extends AppCompatActivity {
         txtpassconfirm=findViewById(R.id.txtPasswordConfirm);
         btndangky =findViewById(R.id.btnDangKy);
         mAuth =  FirebaseAuth.getInstance();
+
         TonTai =findViewById(R.id.txtAccount);
         String text = "Bạn đã có tài khoản?";
         SpannableString spannableString = new SpannableString(text);
