@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".MainActivity">
 
-    <!-- Ô nhập điểm xuất phát -->
-    <EditText
-        android:id="@+id/start_location"
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập điểm xuất phát"/>
-
-    <!-- Ô nhập điểm đến -->
-    <EditText
-        android:id="@+id/end_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập điểm đến"/>
-
-    <!-- Nút tìm đường -->
-    <Button
-        android:id="@+id/btn_find_route"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tìm đường"
-        android:layout_gravity="center"/>
-
-    <!-- Map Fragment để hiển thị bản đồ -->
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottom_navigation"
+        android:background="#fff"
+        app:menu="@menu/bottom_navigation_menu"
+        />
+</RelativeLayout>

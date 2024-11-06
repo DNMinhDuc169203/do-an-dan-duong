@@ -97,7 +97,7 @@ public class dangky extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(dangky.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(dangky.this,MainActivity.class);
+                    Intent intent = new Intent(dangky.this,Dangnhap.class);
                     startActivity(intent);
                 }
                 else {

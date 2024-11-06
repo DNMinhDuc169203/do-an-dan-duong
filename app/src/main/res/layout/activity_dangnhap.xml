@@ -5,34 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dangnhap"
-    android:orientation="vertical"
+    android:background="#B556A0DB"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="16dp"
-    android:background="#B556A0DB">
+    tools:context=".Dangnhap">
 
     <!-- Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="Đăng Nhập"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:textStyle="bold" />
 
     <!-- Email Input Field -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="16dp"
-        android:gravity="center_vertical">
+        android:paddingBottom="16dp">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/baseline_mail_24"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/baseline_mail_24" />
+
         <EditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
@@ -45,36 +46,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="16dp"
-        android:gravity="center_vertical">
+        android:paddingBottom="16dp">
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/baseline_lock_24"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/baseline_lock_24" />
 
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <!-- Button Layout -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnDangNhap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng nhập"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginEnd="16dp"
+            android:text="Đăng nhập" />
 
         <Button
             android:id="@+id/btnDangKy"
