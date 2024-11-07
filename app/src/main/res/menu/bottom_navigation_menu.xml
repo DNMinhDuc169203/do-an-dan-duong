@@ -2,14 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_trangchu"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/home"
         android:title="Trang chủ" />
     <item
         android:id="@+id/nav_lichsu"
-        android:icon="@drawable/baseline_home_24"
-        android:title="Lịch sử" />
+        android:icon="@drawable/history"
+        android:title="Lịch sử"
+        />
     <item
         android:id="@+id/nav_gioithieu"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/gioithieu"
         android:title="Giới thiệu" />
 </menu>

@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity  {
                     loadFrag(new GioithieuFragment());
                 }
 
-                return false;
+                return true;
             }
         });
         bottomNavigationView.setSelectedItemId(R.id.nav_trangchu);

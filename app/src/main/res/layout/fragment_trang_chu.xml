@@ -10,28 +10,31 @@
         android:id="@+id/txtViTriBatDau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập điểm xuất phát"/>
+        android:hint="Nhập điểm xuất phát"
+        android:inputType="text"/>
 
     <!-- Ô nhập điểm đến -->
     <EditText
         android:id="@+id/txtViTriCanDen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập điểm đến"/>
+        android:hint="Nhập điểm đến"
+        android:inputType="text"/>
 
     <!-- Nút tìm đường -->
-    <Button
-        android:id="@+id/btn_find_route"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tìm đường"
-        android:layout_gravity="center"/>
 
     <!-- Map Fragment để hiển thị bản đồ -->
+    <Button
+        android:id="@+id/btn_Tim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Tìm đường" />
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 </LinearLayout>

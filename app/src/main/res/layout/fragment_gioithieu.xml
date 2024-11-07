@@ -5,11 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".fragment.GioithieuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TextView hiển thị thông tin giới thiệu -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Tao la minh duc"
+        android:gravity="center"
+        android:text="Tên: Đặng Nguyễn Minh Đức\nMSSV: DH52110816\nLớp: D21_TH06"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:padding="16dp"
+        android:lineSpacingExtra="4dp"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+
         />
 
 </FrameLayout>

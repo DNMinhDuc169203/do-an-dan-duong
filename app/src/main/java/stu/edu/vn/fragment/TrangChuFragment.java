@@ -2,19 +2,26 @@ package stu.edu.vn.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.BuildConfig;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,16 +30,29 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import stu.edu.vn.R;
-import stu.edu.vn.fragment.GioithieuFragment;
-import stu.edu.vn.fragment.LichSuFragment;
+import stu.edu.vn.network.RouteFetcher;
+import stu.edu.vn.utils.GeocoderHelper;
 
 public class TrangChuFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap map;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private Button btnTim;
+    private EditText txtViTriBatDau, txtViTriCanDen;
 
     private static final int quyen_truy_cap_vi_tri = 1;
 
@@ -42,18 +62,20 @@ public class TrangChuFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trang_chu, container, false);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        btnTim = view.findViewById(R.id.btn_Tim);
+        txtViTriBatDau = view.findViewById(R.id.txtViTriBatDau);
+        txtViTriCanDen = view.findViewById(R.id.txtViTriCanDen);
 
-        // Kiểm tra quyền và khởi tạo bản đồ
+        btnTim.setOnClickListener(view1 -> timDuong());
+
         if (checkLocationPermission()) {
             initMap(view);
         } else {
             requestLocationPermission();
         }
-
 
         return view;
     }
@@ -104,4 +126,51 @@ public class TrangChuFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    // Phương thức timDuong để xử lý địa chỉ và vẽ đường
+    // Điều chỉnh lại code gọi các hàm mới tạo trong các package
+    private void timDuong() {
+        String startLocation = txtViTriBatDau.getText().toString().trim();
+        String endLocation = txtViTriCanDen.getText().toString().trim();
+
+        if (startLocation.isEmpty() || endLocation.isEmpty()) {
+            Toast.makeText(getContext(), "Vui lòng nhập cả điểm bắt đầu và điểm đến", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            LatLng startLatLng = GeocoderHelper.getLatLngFromAddress(getContext(), startLocation);
+            LatLng endLatLng = GeocoderHelper.getLatLngFromAddress(getContext(), endLocation);
+
+            if (startLatLng == null || endLatLng == null) {
+                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Không tìm thấy địa chỉ, vui lòng kiểm tra lại", Toast.LENGTH_SHORT).show());
+                return;
+            }
+
+            getActivity().runOnUiThread(() -> {
+                String url = getDirectionsUrl(startLatLng, endLatLng);
+                new RouteFetcher(getContext(), new RouteFetcher.RouteFetchListener() {
+                    @Override
+                    public void onRouteFound(List<LatLng> routePoints) {
+                        PolylineOptions polylineOptions = new PolylineOptions().addAll(routePoints).color(Color.BLUE).width(10);
+                        map.addPolyline(polylineOptions);
+                    }
+
+                    @Override
+                    public void onRouteError(String errorMessage) {
+                        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                }).fetchRoute(url);
+            });
+        });
+    }
+
+
+    private String getDirectionsUrl(LatLng origin, LatLng dest) {
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        String key = "AIzaSyCFeg_acSp8uvVE8DKz5tuBJJs4W_7anmA";  // Replace with your Google Maps API Key
+        return "https://maps.googleapis.com/maps/api/directions/json?" + str_origin + "&" + str_dest + "&key=" + key;
+    }
 }
+
